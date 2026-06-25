@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sagar Sankhe – QA Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #1D9E75;
+    --green-dark: #0F6E56;
+    --green-light: #E1F5EE;
+    --text: #1a1a1a;
+    --text-muted: #555;
+    --text-light: #888;
+    --border: #e0e0e0;
+    --bg: #ffffff;
+    --bg-secondary: #f7f8f6;
+    --radius: 8px;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text);
+    background: #f2f4f1;
+    padding: 2rem 1rem;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, #0d3d2e 0%, #1D9E75 100%);
+    padding: 2rem 2.5rem 1.75rem;
+    color: #fff;
+    position: relative;
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .header-left { flex: 1; min-width: 260px; }
+
+  .name {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .job-title-header {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.3px;
+    margin-bottom: 14px;
+  }
+
+  .contact-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .contact-bar a { color: rgba(255,255,255,0.9); text-decoration: none; }
+  .contact-bar a:hover { text-decoration: underline; color: #fff; }
+  .ci { display: flex; align-items: center; gap: 5px; }
+
+  /* ── Body ── */
+  .body { padding: 2rem 2.5rem; }
+
+  .section { margin-bottom: 1.75rem; }
+
+  .section-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1.5px solid var(--green-light);
+  }
+
+  .summary {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px 24px;
+  }
+
+  .skill-row { display: flex; gap: 8px; font-size: 13px; }
+  .skill-cat { font-weight: 500; min-width: 110px; flex-shrink: 0; color: var(--text); }
+  .skill-val { color: var(--text-muted); }
+
+  /* Experience */
+  .job { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); }
+  .job:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+  }
+
+  .job-title { font-weight: 600; font-size: 14px; }
+  .job-date { font-size: 11.5px; color: var(--text-light); white-space: nowrap; }
+  .job-co { font-size: 12.5px; color: var(--green-dark); font-weight: 500; margin-bottom: 8px; }
+
+  .bullets { list-style: none; padding: 0; }
+  .bullets li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 3px 0 3px 16px;
+    position: relative;
+    line-height: 1.65;
+  }
+  .bullets li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-size: 10px;
+    top: 6px;
+  }
+
+  /* Projects */
+  .proj {
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    border: 0.5px solid var(--border);
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .proj:last-child { margin-bottom: 0; }
+  .proj-name { font-weight: 600; font-size: 13.5px; margin-bottom: 2px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .proj-link { font-size: 11.5px; color: var(--green); text-decoration: none; font-weight: 400; }
+  .proj-link:hover { text-decoration: underline; }
+  .proj-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.65; margin-top: 4px; }
+
+  /* Certs */
+  .cert-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    padding: 7px 0;
+    border-bottom: 0.5px solid var(--border);
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .cert-row:last-child { border-bottom: none; }
+  .cert-name { color: var(--text); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .cert-date { font-size: 11.5px; color: var(--text-light); white-space: nowrap; }
+
+  .badge-pill {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #fff3cd;
+    color: #856404;
+    border: 0.5px solid #ffc107;
+  }
+
+  /* Awards */
+  .awards { display: flex; flex-wrap: wrap; gap: 10px; }
+  .award-pill {
+    background: var(--bg-secondary);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 9px 14px;
+  }
+  .award-pill strong { display: block; font-size: 13px; font-weight: 500; color: var(--text); }
+  .award-pill span { font-size: 11.5px; color: var(--text-light); }
+
+  /* Education */
+  .edu-row { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 4px; }
+  .edu-deg { font-weight: 600; font-size: 14px; }
+  .edu-year { font-size: 12px; color: var(--text-light); }
+  .edu-inst { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
+
+  @media (max-width: 640px) {
+    .body { padding: 1.5rem 1.25rem; }
+    .header { padding: 1.5rem 1.25rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .header-inner { flex-direction: column; }
+  }
+</style>
+
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="name">Sagar Shashikant Sankhe</div>
+        <div class="job-title-header">Deputy Manager – Quality Assurance &nbsp;·&nbsp; Capital Markets & BFSI Fintech &nbsp;·&nbsp; 8+ Years</div>
+        <div class="contact-bar">
+          <span class="ci">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Borivali, Mumbai 400092
+          </span>
+          <span class="ci">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012.98 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <a href="tel:+918237714983">+91 82377 14983</a>
+          </span>
+          <span class="ci">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:sagarsankhe23@gmail.com">sagarsankhe23@gmail.com</a>
+          </span>
+          <span class="ci">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <a href="https://www.linkedin.com/in/sagarsankhe23/" target="_blank">linkedin.com/in/sagarsankhe23</a>
+          </span>
+          <span class="ci">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            <a href="https://qaforge.netlify.app" target="_blank">qaforge.netlify.app</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <!-- Summary -->
+    <div class="section">
+      <div class="section-label">Professional Summary</div>
+      <div class="summary">
+        8+ years of QA expertise in BFSI and capital markets fintech, delivering zero-defect production releases across trading and non-trading platforms (Mobile/Android/iOS, Web, EXE). Deep domain command in Equity, F&O, Currency, and Commodities — including OMS, RMS, and multi-exchange risk system validation. Proven record leading QA for JM Financial and Angel One (India's largest retail broker), with ownership of 680+ test cases, 500+ regression workflows, and BOD file validation across 5 trading platforms. ISTQB CTFL v4.0 certified. Creator of QA Forge — a proprietary AI-powered test management tool that cut test authoring time by 40%.
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section">
+      <div class="section-label">Key Skills & Competencies</div>
+      <div class="skills-grid">
+        <div class="skill-row"><span class="skill-cat">Domain</span><span class="skill-val">Equity · F&O · Currency · Commodities · OMS · RMS · SEBI-Regulated Platforms · Capital Markets</span></div>
+        <div class="skill-row"><span class="skill-cat">Testing Types</span><span class="skill-val">Functional · Regression · System · Sanity · Smoke · API (REST) · DB Validation · Performance/Load · UAT · Production Sign-off</span></div>
+        <div class="skill-row"><span class="skill-cat">Tools</span><span class="skill-val">JIRA · Postman · Apache JMeter · LambdaTest · Jenkins · Claude AI (Anthropic) · QA Forge</span></div>
+        <div class="skill-row"><span class="skill-cat">Platforms</span><span class="skill-val">Android · iOS · Web · EXE · TWA (Trusted Web Activity) · Admin-NEST</span></div>
+        <div class="skill-row"><span class="skill-cat">Database</span><span class="skill-val">MS SQL Server</span></div>
+        <div class="skill-row"><span class="skill-cat">Methodology</span><span class="skill-val">Agile/Scrum · Sprint QA · Defect Life Cycle · BOD File Validation · Test Strategy & Planning</span></div>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="section">
+      <div class="section-label">Professional Experience</div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Deputy Manager – Quality Assurance</span>
+          <span class="job-date">Feb 2025 – Present</span>
+        </div>
+        <div class="job-co">JM Financial Services Limited · Andheri, Mumbai</div>
+        <ul class="bullets">
+          <li>Defined QA strategy, test plan, and sign-off criteria for each release cycle — owned end-to-end quality delivery for JM Pro Trading Platform across Mobile (Android/iOS), Web, and Blink Trade EXE covering Equity, F&O, Currency, and Commodities; delivered 25+ production releases with zero critical post-release defects.</li>
+          <li>Authored 680+ structured test cases covering full order lifecycle matrices, Default Order Settings (MTF/NRML/CNC/MIS), ETF Widgets, Flash Trade, Day P&L logic, Disclose Qty, WebSocket broadcast connectivity, and BOD sanity checklists.</li>
+          <li>Led RISK–BULLET backend validation: verified BOD file generation across 5 trading platforms (Omnesys, DBG, GREEK, ODIN, Symphony) — Holdings, Positions, Ledger, Client Blocking; validated scheduler jobs, data accuracy, and UAT-to-Production uploads.</li>
+          <li>Owned QA for Account Opening – DIY (Web & Mobile) and Insta RM journeys including DDPI, Refer &amp; Earn, and Empowerment Nominee; contributed to QA sign-off that secured exchange approval for Blink Trade EXE across all segments.</li>
+          <li>Executed API testing (Postman), database validation (MS SQL), and performance/load testing (JMeter) for all UAT and production releases; integrated test execution reporting into Jenkins CI/CD pipeline; managed all defects in JIRA with structured severity classification.</li>
+          <li>Built <strong>QA Forge</strong> (qaforge.netlify.app) — AI-powered test case management tool using Anthropic Claude API with Sprint Board, AI-generated Test Library, and Sign-off workflow — reducing test case authoring time by ~40%; mentored junior QA engineers on test design and defect reporting practices.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Quality Engineer II</span>
+          <span class="job-date">Mar 2021 – Jan 2025 · 3 yrs 11 mo</span>
+        </div>
+        <div class="job-co">Angel One Limited · Andheri, Mumbai</div>
+        <ul class="bullets">
+          <li>Owned QA strategy and delivery for Spark Trading Platform (Mobile & Web) — one of India's largest retail broking platforms — covering full OMS workflows for Equity and Derivatives across Android, iOS, and Web with bi-weekly release cycles.</li>
+          <li>Designed and maintained regression suites of 500+ critical trading workflows; evaluated automation feasibility for regression suite; ensured platform stability during high-volume sessions with zero P1 production incidents attributable to QA gaps.</li>
+          <li>Led QA for TWA (Trusted Web Activity) applications on Android and iOS, ensuring feature parity and performance benchmarks; executed functional, sanity, API, DB, and performance testing with structured QA sign-off documentation.</li>
+          <li>Consistently identified 15–20 critical defects per release cycle; awarded QA of the Month (Jul 2024), League of Extraordinary Angelites (Jun 2023), and Outstanding Employee of the Month (Aug & Sep 2021).</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-header">
+          <span class="job-title">Quality Analyst</span>
+          <span class="job-date">Jul 2018 – Mar 2021 · 2 yrs 9 mo</span>
+        </div>
+        <div class="job-co">Rupeeseed Technologies Ventures Limited · Borivali, Mumbai</div>
+        <ul class="bullets">
+          <li>Tested OMS and RMS systems across Mobile, Web, and EXE platforms for multiple broker clients; validated risk rules, order blocking logic, and fund release mechanisms across Client Terminal and Dealer Terminal.</li>
+          <li>Prepared BRDs, test scenarios, and test cases for trading modules; validated Admin Terminal workflows — user management, Market Status, Transaction Monitoring, Market Surveillance, Risk Management, and Performance Analysis.</li>
+          <li>Verified amount block on order placement and release on cancellation; collaborated with broker partners, developers, and BAs — delivered comprehensive QA reports with sign-off for all production deployments.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="section">
+      <div class="section-label">Key Projects & Achievements</div>
+
+      <div class="proj">
+        <div class="proj-name">
+          QA Forge — AI-Powered Test Case Management Platform
+          <a class="proj-link" href="https://qaforge.netlify.app" target="_blank">↗ qaforge.netlify.app</a>
+        </div>
+        <div class="proj-desc">Designed and deployed a proprietary QA productivity tool integrating Anthropic Claude API via Cloudflare Worker proxy (CORS-safe), with Sprint Board, AI-generated Test Library, and Share & Sign-off module. Demonstrates hands-on AI-augmented quality engineering, REST API integration, and full-stack Netlify deployment. Cuts test case authoring effort by ~40%.</div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-name">RISK–BULLET — Multi-Exchange Risk Management Validation · JM Financial</div>
+        <div class="proj-desc">Led backend QA for BULLET risk management system — validated BOD file generation across 5 platforms (Omnesys, DBG, GREEK, ODIN, Symphony), scheduler job monitoring, data integrity checks, and UAT-to-Production deployment validation across all exchanges.</div>
+      </div>
+
+      <div class="proj">
+        <div class="proj-name">Blink Trade EXE — Exchange Approval QA · JM Financial</div>
+        <div class="proj-desc">Contributed to QA validation that secured full exchange approval for Blink Trade EXE across all segments — order flow, risk controls, compliance requirements, and performance benchmarks validated across all trading session types.</div>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="section">
+      <div class="section-label">Certifications</div>
+      <div class="cert-row">
+        <span class="cert-name">ISTQB Certified Tester Foundation Level (CTFL) v4.0 — International Software Testing Qualifications Board</span>
+        <span class="cert-date">Oct 2024</span>
+      </div>
+      <div class="cert-row">
+        <span class="cert-name">
+          ISTQB CT-AI: Certified Tester – AI Testing (Testing with Generative AI)
+          <span class="badge-pill">In Progress</span>
+        </span>
+        <span class="cert-date">Expected Jul 2026</span>
+      </div>
+      <div class="cert-row">
+        <span class="cert-name">Generative AI Tools — Skill Nation</span>
+        <span class="cert-date">Jun 2026</span>
+      </div>
+      <div class="cert-row">
+        <span class="cert-name">AI Tools Workshop — Be10x</span>
+        <span class="cert-date">Mar 2026</span>
+      </div>
+    </div>
+
+    <!-- Awards -->
+    <div class="section">
+      <div class="section-label">Honors & Awards</div>
+      <div class="awards">
+        <div class="award-pill">
+          <strong>QA of the Month</strong>
+          <span>Angel One Limited · July 2024</span>
+        </div>
+        <div class="award-pill">
+          <strong>League of Extraordinary Angelites</strong>
+          <span>Angel One Limited · June 2023</span>
+        </div>
+        <div class="award-pill">
+          <strong>Outstanding Employee (Consecutive)</strong>
+          <span>Angel One Limited · Aug & Sep 2021</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+      <div class="section-label">Education</div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-deg">B.E. — Information Technology</div>
+          <div class="edu-inst">Vidyavardhini's College of Engineering & Technology, Vasai · Mumbai University</div>
+        </div>
+        <span class="edu-year">2017</span>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+</div><!-- /page -->
+
+</body>
+</html>
