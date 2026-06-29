@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagar Sankhe - Live International Resume & Recruiter Workspace</title>
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#1e293b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Modern Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* Standard A4 Paper Simulation (for Desktop View) */
+        @media (min-width: 1024px) {
+            .paper-sheet {
+                width: 210mm;
+                min-height: 297mm;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        /* Watermark Cropping Magic for Headshot Profile Image */
+        .profile-img-container {
+            width: 105px;
+            height: 125px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            background-color: #f8fafc;
+        }
+        /* Scale image slightly and origin on top to push bottom-right Gemini watermark out of frame */
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transform: scale(1.15);
+            transform-origin: center top;
+            transition: opacity 0.2s ease;
+        }
+
+        /* Perfect Print Styling Overrides */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 10pt !important;
+            }
+            /* Hide web-only UI elements completely */
+            .no-print, #control-navbar {
+                display: none !important;
+                height: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            /* Standardize the printable page width and dimensions */
+            main {
+                display: block !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .paper-sheet {
+                width: 100% !important;
+                max-width: 100% !important;
+                min-height: auto !important;
+                box-shadow: none !important;
+                border: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: white !important;
+                color: black !important;
+            }
+            /* Prevent widows and orphaned titles */
+            h1, h2, h3, h4 {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+            .job-card, .project-item, .skills-segment, li {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+            /* Strip blue color and underlines on physical paper */
+            a {
+                text-decoration: none !important;
+                color: inherit !important;
+            }
+            /* Force basic standard dimensions and margins */
+            @page {
+                size: A4 portrait;
+                margin: 12mm 15mm 12mm 15mm;
+            }
+            /* Force color representation on standard browsers */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- Interactive Top Toast Notification -->
+    <div id="toast-message" class="fixed top-5 right-5 z-50 transform translate-y-[-100px] opacity-0 transition-all duration-300 bg-slate-950 border border-indigo-500 text-indigo-400 px-4 py-3 rounded-lg shadow-2xl flex items-center gap-2 text-sm font-semibold pointer-events-none">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <span id="toast-text">Configuration copied!</span>
+    </div>
+
+    <!-- COMPACT NAVBAR & CONTROLLER (Matches Resume Canvas Width) -->
+    <nav id="control-navbar" class="bg-slate-950 border-b border-slate-800 px-4 py-3 sticky top-0 z-40 shadow-xl no-print font-sans">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center font-black text-white text-lg tracking-wider shadow-md shadow-indigo-500/20">
+                    S
+                </div>
+                <div>
+                    <h1 class="text-sm font-bold tracking-tight text-white flex items-center gap-1.5">
+                        Sagar Sankhe <span class="text-[9px] bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded-full border border-indigo-500/20 font-mono">Resume Page</span>
+                    </h1>
+                    <p class="text-[11px] text-slate-400">Deputy Manager - Quality Assurance</p>
+                </div>
+            </div>
+
+            <!-- Compact Dropdowns and CTA -->
+            <div class="flex flex-wrap items-center gap-3 justify-end w-full sm:w-auto">
+                
+                <!-- Dynamic Country Dropdown Selector -->
+                <div class="flex flex-col">
+                    <span class="text-[8px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Target Market Layout</span>
+                    <select 
+                        id="region-selector" 
+                        onchange="changeResumeRegion(this.value)"
+                        class="bg-slate-900 border border-slate-700 hover:border-slate-600 rounded-md py-1 px-2 text-xs text-white focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium cursor-pointer"
+                    >
+                        <option value="in">🇮🇳 India (Original Standard)</option>
+                        <option value="us">🇺🇸 United States (Anti-Bias Rules)</option>
+                        <option value="de">🇩🇪 Germany (Lebenslauf Standard)</option>
+                        <option value="jp">🇯🇵 Japan (Rirekisho Standard)</option>
+                        <option value="fr">🇫🇷 France (Two-Bullet Limit)</option>
+                        <option value="uk">🇬🇧 United Kingdom (UK Spelling)</option>
+                        <option value="au">🇦🇺 Australia (Full Portfolio)</option>
+                        <option value="ae">🇦🇪 UAE (Bilingual Standard)</option>
+                    </select>
+                </div>
+
+                <!-- Print / Save PDF Button -->
+                <div class="flex flex-col pt-3">
+                    <button 
+                        onclick="window.print()" 
+                        class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-1 px-3.5 rounded-md text-xs transition-all shadow hover:shadow-indigo-600/25 flex items-center gap-1"
+                    >
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Download PDF
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- CENTERED A4 PORTRAIT RESUME CANVAS -->
+    <main class="flex-1 w-full max-w-4xl mx-auto p-4 lg:p-6 flex flex-col items-center">
+        
+        <div 
+            id="resume-canvas"
+            data-region="in"
+            class="paper-sheet bg-white text-slate-900 p-8 md:p-12 border-t-[6px] border-indigo-600 flex flex-col justify-between transition-all duration-300 w-full animate-fadeIn"
+        >
+            
+            <!-- PRIMARY DOCUMENT HEADER -->
+            <div>
+                <div class="flex justify-between items-start gap-6 border-b pb-4 mb-4">
+                    <div class="space-y-1.5 flex-1">
+                        <span id="hire-stamp-jp" class="hidden text-[10px] tracking-widest font-extrabold uppercase bg-slate-100 text-slate-600 px-2.5 py-0.5 rounded inline-block mb-1">履歴書 (RIREKISHO STANDARD)</span>
+                        <h2 id="resume-fullname" class="text-2.5xl font-black tracking-tight text-slate-900 transition-colors duration-300">
+                            SAGAR SHASHIKANT SANKHE
+                        </h2>
+                        <p id="resume-title" class="text-xs font-bold text-slate-600 tracking-tight leading-tight">
+                            Deputy Manager - Quality Assurance | Capital Markets & BFSI Fintech | 8+ Years Experience
+                        </p>
+                        
+                        <!-- Clickable Contact Row -->
+                        <div class="flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-slate-500 font-medium pt-1">
+                            <span class="flex items-center gap-0.5">📍 Borivali, Mumbai, 400092</span>
+                            <span class="flex items-center gap-0.5">
+                                ✉️ <a href="mailto:sagarsankhe23@gmail.com" class="text-indigo-600 hover:text-indigo-800 hover:underline transition-colors">sagarsankhe23@gmail.com</a>
+                            </span>
+                            <span class="flex items-center gap-0.5">
+                                📞 <a href="tel:+918237714983" class="text-indigo-600 hover:text-indigo-800 hover:underline transition-colors">+91 8237714983</a>
+                            </span>
+                            <span class="flex items-center gap-0.5">
+                                🔗 <a href="https://linkedin.com/in/sagarsankhe23" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-800 hover:underline transition-colors">linkedin.com/in/sagarsankhe23</a>
+                            </span>
+                        </div>
+
+                        <!-- German/UAE Personal Information (Dynamic) -->
+                        <div id="compliance-personal-details" class="hidden bg-slate-50 border border-slate-150 p-2.5 rounded-lg text-[11px] text-slate-600 flex flex-wrap gap-4 mt-2">
+                            <span id="label-dob"><strong>Date of Birth:</strong> 23rd August 1994</span>
+                            <span id="label-nationality"><strong>Nationality:</strong> Indian</span>
+                            <span id="label-marital"><strong>Marital Status:</strong> Married</span>
+                            <span id="languages-u-list" class="hidden"><strong>Languages:</strong> English (Fluent), Marathi (Native), Hindi (Native)</span>
+                        </div>
+                    </div>
+
+                    <!-- PROFILE PHOTO HEADSHOT / FAILSAFE SYSTEM -->
+                    <div id="portrait-photo-block" class="hidden flex-shrink-0">
+                        <div class="profile-img-container shadow-sm relative">
+                            <!-- Raw headshot referencing local image.png with watermark crop. Onerror triggers fallback vector. -->
+                            <img id="profile-img" src="image.png" alt="Sagar Shashikant Sankhe Headshot" onerror="handleImageLoadFailure();">
+                            
+                            <!-- Premium Fallback Monogram Card (Hidden unless portrait image fails) -->
+                            <div id="profile-fallback" class="hidden absolute inset-0 w-full h-full flex flex-col items-center justify-center p-2 text-center bg-slate-50">
+                                <div class="w-9 h-9 rounded-full bg-indigo-600 flex items-center justify-center text-white font-extrabold text-xs mb-1.5">
+                                    SS
+                                </div>
+                                <span class="text-[9px] font-black text-slate-800 tracking-wide uppercase leading-none block font-sans">Sagar Sankhe</span>
+                                <span class="text-[8px] text-slate-500 block mt-1 font-semibold leading-none">QA Lead</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUMMARY SECTION -->
+                <div class="mb-5">
+                    <h3 id="h-summary" class="text-xs font-black uppercase tracking-widest text-indigo-600 border-b-2 border-indigo-600 pb-1 mb-2">
+                        Professional Summary
+                    </h3>
+                    <p id="summary-text" class="text-[11px] text-slate-700 leading-relaxed text-justify">
+                        8+ years of QA expertise in BFSI and capital markets fintech, delivering zero-defect production releases across trading and non-trading platforms (Mobile/Android/iOS, Web, EXE). Deep domain command in Equity, F&O, Currency, and Commodities including OMS, RMS, and multi-exchange risk system validation. Proven record leading QA for JM Financial and Angel One (India's largest retail broker), with ownership of 680+ test cases, 500+ regression workflows, and BOD file validation across 5 trading platforms. ISTQB CTFL v4.0 certified. Creator of QA Forge, a proprietary AI-powered test management tool that cut test authoring time by 40%.
+                    </p>
+                </div>
+
+                <!-- DYNAMIC SKILLS GRID -->
+                <div class="mb-5">
+                    <h3 id="h-skills" class="text-xs font-black uppercase tracking-widest text-indigo-600 border-b-2 border-indigo-600 pb-1 mb-2.5">
+                        Key Skills & Competencies
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-[11px] text-slate-700 bg-slate-50/50 p-3 rounded-lg border border-slate-100">
+                        
+                        <div class="space-y-1.5">
+                            <div>
+                                <span id="sub-domain" class="text-[9px] font-extrabold uppercase text-slate-400 tracking-wider block">Domain Command</span>
+                                <p class="font-medium text-slate-800">Equity, F&O, Currency, Commodities, OMS, RMS, SEBI-Regulated Platforms, Capital Markets</p>
+                            </div>
+                            <div>
+                                <span id="sub-standards" class="text-[9px] font-extrabold uppercase text-slate-400 tracking-wider block">QA Practice Standards</span>
+                                <p class="font-medium text-slate-800">Functional, Regression, System, Sanity, Smoke, API Testing (REST), Database Validation, Performance/Load, UAT, Production Sign-off</p>
+                            </div>
+                            <div>
+                                <span id="sub-methodology" class="text-[9px] font-extrabold uppercase text-slate-400 tracking-wider block">Execution Methodology</span>
+                                <p class="font-medium text-slate-800">Agile/Scrum, Sprint QA, Defect Life Cycle, BOD File Validation, Test Strategy & Planning</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5 border-t md:border-t-0 md:border-l pt-2 md:pt-0 md:pl-4 border-slate-200">
+                            <div>
+                                <span id="sub-tools" class="text-[9px] font-extrabold uppercase text-slate-400 tracking-wider block">Systems & Framework Tooling</span>
+                                <p id="tools-text" class="font-medium text-slate-800">JIRA, Postman, Apache JMeter, Lambda Test, Jenkins CI/CD, Claude AI (Anthropic), QA Forge</p>
+                            </div>
+                            <div>
+                                <span id="sub-platforms" class="text-[9px] font-extrabold uppercase text-slate-400 tracking-wider block">Target Environments</span>
+                                <p class="font-medium text-slate-800">Android, iOS, Web, EXE platforms, TWA (Trusted Web Activity), Admin-NEST</p>
+                            </div>
+                            <div>
+                                <span id="sub-databases" class="text-[9px] font-extrabold uppercase text-slate-400 tracking-wider block">Databases & Query Engines</span>
+                                <p class="font-medium text-slate-800">MS SQL Server</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- WORK EXPERIENCE SECTION -->
+                <div class="mb-5">
+                    <h3 id="h-experience" class="text-xs font-black uppercase tracking-widest text-indigo-600 border-b-2 border-indigo-600 pb-1 mb-3">
+                        Professional Experience
+                    </h3>
+                    <div class="space-y-4">
+                        
+                        <!-- JM Financial Services -->
+                        <div class="job-card">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="text-xs font-extrabold text-slate-900 tracking-tight">Deputy Manager - Quality Assurance</h4>
+                                <span class="text-[10px] text-slate-500 font-bold">Feb 2025 - Present</span>
+                            </div>
+                            <div class="flex justify-between items-baseline text-[11px] text-slate-600 font-semibold mb-1.5">
+                                <span>JM Financial Services Limited</span>
+                                <span>Andheri, Mumbai</span>
+                            </div>
+                            <ul class="list-disc pl-4 space-y-1 text-[10.5px] text-slate-700 leading-relaxed text-justify">
+                                <li class="job-bullet">Defined QA strategy, test plan, and sign-off criteria for each release cycle; owned end-to-end quality delivery for JM Pro Trading Platform across Mobile (Android/iOS), Web, and Blink Trade EXE covering Equity, F&O, Currency, and Commodities; delivered 25+ production releases with zero critical post-release defects.</li>
+                                <li class="job-bullet">Authored 680+ structured test cases covering full order lifecycle matrices, Default Order Settings (MTF/NRML/CNC/MIS), ETF Widgets, Flash Trade, Day P&L logic, Disclose Qty, WebSocket broadcast connectivity, and BOD sanity checklists.</li>
+                                <li class="job-bullet">Led RISK-BULLET backend validation: verified BOD file generation across 5 trading platforms (Omnesys, DBG, GREEK, ODIN, Symphony) - Holdings, Positions, Ledger, Client Blocking; validated scheduler jobs, data accuracy, and UAT-to-Production uploads.</li>
+                                <li class="job-bullet">Owned QA for Account Opening - DIY (Web & Mobile) and Insta RM journeys including DDPI, Refer & Earn, and Empowerment Nominee; contributed to QA sign-off that secured exchange approval for Blink Trade EXE across all segments.</li>
+                                <li class="job-bullet">Executed API testing (Postman), database validation (MS SQL), and performance/load testing (JMeter) for all UAT and production releases; integrated test execution reporting into Jenkins CI/CD pipeline; managed all defects in JIRA with structured severity classification.</li>
+                                <li class="job-bullet">Built QA Forge (<a href="https://qaforge.netlify.app" target="_blank" rel="noopener noreferrer" class="text-indigo-600 font-bold hover:underline transition-colors">qaforge.netlify.app</a>) - AI-powered test case management tool using Anthropic Claude API with Sprint Board, AI-generated Test Library, and Sign-off workflow reducing test case authoring time by ~40%; mentored junior QA engineers on test design and defect reporting practices.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Angel One Limited -->
+                        <div class="job-card">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="text-xs font-extrabold text-slate-900 tracking-tight">Quality Engineer II</h4>
+                                <span class="text-[10px] text-slate-500 font-bold">Mar 2021 - Jan 2025</span>
+                            </div>
+                            <div class="flex justify-between items-baseline text-[11px] text-slate-600 font-semibold mb-1.5">
+                                <span>Angel One Limited</span>
+                                <span>Andheri, Mumbai</span>
+                            </div>
+                            <ul class="list-disc pl-4 space-y-1 text-[10.5px] text-slate-700 leading-relaxed text-justify">
+                                <li class="job-bullet">Owned QA strategy and delivery for Spark Trading Platform (Mobile & Web), one of India's largest retail broking platforms covering full OMS workflows for Equity and Derivatives segments across Android, iOS, and Web with bi-weekly release cycles.</li>
+                                <li class="job-bullet">Designed and maintained regression suites of 500+ critical trading workflows; evaluated automation feasibility for regression suite; ensured platform stability during high-volume sessions with zero P1 production incidents attributable to QA gaps.</li>
+                                <li class="job-bullet">Led QA for TWA (Trusted Web Activity) applications on Android and iOS, ensuring feature parity and performance benchmarks; executed functional, sanity, API, DB, and performance testing with structured QA sign-off documentation.</li>
+                                <li class="job-bullet">Consistently identified 15-20 critical defects per release cycle; awarded QA of the Month (Jul 2024), League of Extraordinary Angelites (Jun 2023), and Outstanding Employee of the Month (Aug & Sep 2021).</li>
+                            </ul>
+                        </div>
+
+                        <!-- Rupeeseed -->
+                        <div class="job-card">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h4 class="text-xs font-extrabold text-slate-900 tracking-tight">Quality Analyst</h4>
+                                <span class="text-[10px] text-slate-500 font-bold">Jul 2018 - Mar 2021</span>
+                            </div>
+                            <div class="flex justify-between items-baseline text-[11px] text-slate-600 font-semibold mb-1.5">
+                                <span>Rupeeseed Technologies Ventures Limited</span>
+                                <span>Borivali, Mumbai</span>
+                            </div>
+                            <ul class="list-disc pl-4 space-y-1 text-[10.5px] text-slate-700 leading-relaxed text-justify">
+                                <li class="job-bullet">Tested OMS and RMS systems across Mobile, Web, and EXE platforms for multiple broker clients; validated risk rules, order blocking logic, and fund release mechanisms across Client Terminal and Dealer Terminal.</li>
+                                <li class="job-bullet">Prepared BRDs, test scenarios, and test cases for trading modules; validated Admin Terminal workflows: user management, Market Status, Transaction Monitoring, Market Surveillance, Risk Management, and Performance Analysis.</li>
+                                <li class="job-bullet">Verified amount block on order placement and release on cancellation; collaborated with broker partners, developers, and BAs; delivered comprehensive QA reports with sign-off for all production deployments.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- KEY PROJECTS SECTION -->
+                <div class="mb-5">
+                    <h3 id="h-projects" class="text-xs font-black uppercase tracking-widest text-indigo-600 border-b-2 border-indigo-600 pb-1 mb-2.5">
+                        Key Projects & Achievements
+                    </h3>
+                    <div class="space-y-2.5 text-[11px] text-slate-700">
+                        <div class="project-item">
+                            <strong class="text-slate-900">
+                                QA Forge AI-Powered Test Case Management Platform (<a href="https://qaforge.netlify.app" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-850 hover:underline transition-colors">qaforge.netlify.app</a>)
+                            </strong>
+                            <p class="text-slate-600 text-[10px] leading-relaxed">Designed and deployed a proprietary QA productivity tool integrating Anthropic Claude API via Cloudflare Worker proxy (CORS-safe). Features a Sprint Board, AI-generated Test Library, and Share & Sign-off module. Cuts test case authoring effort by ~40%.</p>
+                        </div>
+                        <div class="project-item">
+                            <strong class="text-slate-900">RISK-BULLET Multi-Exchange Risk Validation</strong>
+                            <p class="text-slate-600 text-[10px] leading-relaxed">Led backend QA for BULLET risk management system. Validated BOD file generation across 5 platforms (Omnesys, DBG, GREEK, ODIN, Symphony), scheduler job monitoring, data integrity checks, and UAT-to-Production deployment validation across all exchanges.</p>
+                        </div>
+                        <div class="project-item">
+                            <strong class="text-slate-900">Blink Trade EXE Exchange Approval QA</strong>
+                            <p class="text-slate-600 text-[10px] leading-relaxed">Contributed to QA validation that secured full exchange approval for Blink Trade EXE across all segments - order flow, risk controls, compliance requirements, and performance benchmarks validated across all trading session types.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EDUCATION & CERTIFICATIONS SUMMARY ROW -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    
+                    <div>
+                        <h3 id="h-certs" class="text-xs font-black uppercase tracking-widest text-indigo-600 border-b-2 border-indigo-600 pb-1 mb-2">
+                            Certifications & Credentials
+                        </h3>
+                        <ul class="space-y-1.5 text-[10.5px] text-slate-700 font-medium">
+                            <li>🎓 <strong>ISTQB Certified Tester Foundation Level (CTFL) v4.0</strong></li>
+                            <li>🤖 <strong>ISTQB CT-AI: AI Testing</strong> (Testing with Generative AI) - <em>In Progress</em></li>
+                            <li>✨ <strong>Generative AI Tools Certification</strong> - Skill Nation</li>
+                            <li>🔧 <strong>AI Tools Workshop</strong> - Be10x</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 id="h-education" class="text-xs font-black uppercase tracking-widest text-indigo-600 border-b-2 border-indigo-600 pb-1 mb-2">
+                            Education
+                        </h3>
+                        <div class="text-[10.5px] text-slate-700 space-y-1">
+                            <strong class="block text-slate-900 leading-tight">B.E. - Information Technology (2017)</strong>
+                            <span class="text-slate-600 block leading-tight">Vidyavardhini's College of Engineering & Technology, Vasai</span>
+                            <span class="text-slate-500 block">Mumbai University</span>
+                        </div>
+
+                        <!-- Hobbies -->
+                        <div id="hobbies-block" class="hidden mt-4 pt-3 border-t border-slate-200">
+                            <h4 id="h-hobbies" class="text-[10px] uppercase text-indigo-600 font-extrabold tracking-wider mb-1 font-sans">Hobbies & Extra-Curriculars</h4>
+                            <span class="text-[10.5px] text-slate-800 block leading-relaxed font-medium font-sans">Travelling, Mentoring QA aspirants, Outdoor & Indoor Sports</span>
+                        </div>
+
+                        <!-- References -->
+                        <div id="references-block" class="hidden mt-4 pt-3 border-t border-slate-200">
+                            <h4 id="h-refs" class="text-[10px] uppercase text-indigo-600 font-extrabold tracking-wider mb-1 font-sans">References</h4>
+                            <span class="text-[10.5px] text-slate-800 italic block leading-relaxed font-medium font-sans">Professional references available instantly upon request.</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FORMAL GERMAN SIGNATURE COMPLIANCE COMPONENT -->
+            <div id="germany-signing-component" class="hidden pt-6 mt-4 border-t border-slate-200">
+                <div class="flex justify-between items-end text-[10px] text-slate-500">
+                    <div>
+                        <p class="border-b border-slate-300 w-32 pb-0.5">Mumbai, India</p>
+                        <p id="label-ort" class="text-[8px] text-slate-400 mt-1 font-sans">Ort (Place)</p>
+                    </div>
+                    <div>
+                        <p class="border-b border-slate-300 w-32 pb-0.5 font-serif italic text-center text-indigo-600">
+                            Sagar Sankhe
+                        </p>
+                        <p id="label-unterschrift" class="text-[8px] text-slate-400 mt-1 text-center font-sans">Unterschrift (Signature)</p>
+                    </div>
+                    <div>
+                        <p id="germany-signing-date" class="border-b border-slate-300 w-32 pb-0.5 text-center">June 28, 2026</p>
+                        <p id="label-datum" class="text-[8px] text-slate-400 mt-1 text-center font-sans">Datum (Date)</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER WEB BANNER (Web Only) -->
+    <footer class="bg-slate-950 p-4 border-t border-slate-800 text-center text-xs text-slate-500 mt-auto no-print font-sans">
+        <p>© 2026 Sagar Shashikant Sankhe. Built with high-fidelity print preservation and clickable hyperlink routing.</p>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        // Preset Regional Rule Data
+        const REGIONAL_RULES = {
+            in: {
+                bulletCount: 99,
+                antiBias: false,
+                hobbies: true,
+                languages: true,
+                references: false,
+                signing: false,
+                translation: false,
+                photo: false // Explicitly configured to hide for domestic applications
+            },
+            us: {
+                bulletCount: 3,
+                antiBias: true,
+                hobbies: false,
+                languages: false,
+                references: false,
+                signing: false,
+                translation: false,
+                photo: false // Hide to comply with EEOC anti-bias laws
+            },
+            de: {
+                bulletCount: 99,
+                antiBias: false,
+                hobbies: true,
+                languages: true,
+                references: false,
+                signing: true,
+                translation: true, // Swaps major structural titles to German
+                photo: true
+            },
+            jp: {
+                bulletCount: 99,
+                antiBias: false,
+                hobbies: true,
+                languages: true,
+                references: true,
+                signing: false,
+                translation: true, // Swaps major structural titles to Japanese
+                photo: true
+            },
+            fr: {
+                bulletCount: 2,
+                antiBias: true,
+                hobbies: true,
+                languages: true,
+                references: false,
+                signing: false,
+                translation: true, // Swaps major structural titles to French
+                photo: true
+            },
+            uk: {
+                bulletCount: 99,
+                antiBias: true,
+                hobbies: true,
+                languages: false,
+                references: true,
+                signing: false,
+                translation: false,
+                photo: false // Hide for British recruitment equality standard
+            },
+            au: {
+                bulletCount: 99,
+                antiBias: true,
+                hobbies: true,
+                languages: false,
+                references: true,
+                signing: false,
+                translation: false,
+                photo: false
+            },
+            ae: {
+                bulletCount: 99,
+                antiBias: false,
+                hobbies: true,
+                languages: true,
+                references: true,
+                signing: false,
+                translation: false,
+                photo: true
+            }
+        };
+
+        // Cache the base elements for translation
+        const ORIGINAL_TEXTS = {
+            summary: "8+ years of QA expertise in BFSI and capital markets fintech, delivering zero-defect production releases across trading and non-trading platforms (Mobile/Android/iOS, Web, EXE). Deep domain command in Equity, F&O, Currency, and Commodities including OMS, RMS, and multi-exchange risk system validation. Proven record leading QA for JM Financial and Angel One (India's largest retail broker), with ownership of 680+ test cases, 500+ regression workflows, and BOD file validation across 5 trading platforms. ISTQB CTFL v4.0 certified. Creator of QA Forge, a proprietary AI-powered test management tool that cut test authoring time by 40%.",
+            headers: {
+                summary: "Professional Summary",
+                skills: "Key Skills & Competencies",
+                experience: "Professional Experience",
+                projects: "Key Projects & Achievements",
+                certs: "Certifications & Credentials",
+                education: "Education",
+                hobbies: "Hobbies & Extra-Curriculars",
+                references: "References"
+            },
+            subcategories: {
+                domain: "Domain Command",
+                standards: "QA Practice Standards",
+                methodology: "Execution Methodology",
+                tools: "Systems & Framework Tooling",
+                platforms: "Target Environments",
+                databases: "Databases & Query Engines"
+            }
+        };
+
+        // Local translation vocabulary maps
+        const TRANSLATIONS = {
+            de: {
+                headers: {
+                    summary: "Berufliche Zusammenfassung",
+                    skills: "Kernkompetenzen & Fähigkeiten",
+                    experience: "Berufserfahrung",
+                    projects: "Wichtige Projekte & Erfolge",
+                    certs: "Zertifikate & Qualifikationen",
+                    education: "Ausbildung und Studium",
+                    hobbies: "Hobbys & Interessen",
+                    references: "Referenzen"
+                },
+                subcategories: {
+                    domain: "Fachbereichskompetenz (Domain)",
+                    standards: "Qualitätssicherung & Prüfstandards",
+                    methodology: "Methodik & Prozessmanagement",
+                    tools: "QA-Automatisierung & Werkzeuge",
+                    platforms: "Ziel-Betriebssysteme & Plattformen",
+                    databases: "Datenbanken & Abfrageprogramme"
+                },
+                personal: {
+                    dob: "<strong>Date of Birth:</strong> 23rd August 1994",
+                    nationality: "<strong>Nationality:</strong> Indian",
+                    marital: "<strong>Marital Status:</strong> Married",
+                    languages: "<strong>Languages:</strong> English (Fluent), Marathi (Native), Hindi (Native)"
+                },
+                signing: {
+                    ort: "Ort",
+                    unterschrift: "Unterschrift",
+                    datum: "Datum"
+                }
+            },
+            fr: {
+                headers: {
+                    summary: "Résumé Professionnel",
+                    skills: "Compétences Clés & Expertise",
+                    experience: "Expérience Professionnelle",
+                    projects: "Projets Majeurs & Réalisations",
+                    certs: "Certifications et Diplômes",
+                    education: "Éducation & Formation",
+                    hobbies: "Loisirs & Intérêts",
+                    references: "Références"
+                },
+                subcategories: {
+                    domain: "Domaine de Compétence (Fintech)",
+                    standards: "Standards de Test & QA",
+                    methodology: "Méthodologies d'Exécution",
+                    tools: "Outils de Test & d'Automatisation",
+                    platforms: "Environnements de Destination",
+                    databases: "Bases de Données"
+                },
+                personal: {
+                    dob: "<strong>Date of Birth:</strong> 23rd August 1994",
+                    nationality: "<strong>Nationality:</strong> Indian",
+                    marital: "<strong>Marital Status:</strong> Married",
+                    languages: "<strong>Languages:</strong> English (Fluent), Marathi (Native), Hindi (Native)"
+                }
+            },
+            jp: {
+                headers: {
+                    summary: "自己PR (Professional Summary)",
+                    skills: "技術スキル・専門分野 (Key Skills)",
+                    experience: "職歴 (Professional Experience)",
+                    projects: "主要プロジェクト実績 (Key Projects)",
+                    certs: "保有資格・ライセンス (Certifications)",
+                    education: "学歴 (Education)",
+                    hobbies: "趣味・特技 (Hobbies)",
+                    references: "リファレンス (References)"
+                },
+                subcategories: {
+                    domain: "専門金融知識 (Domain)",
+                    standards: "品質保証標準 (QA Standards)",
+                    methodology: "プロジェクト管理手法 (Methodology)",
+                    tools: "テストツール・自動化 (Tools)",
+                    platforms: "対応プラットフォーム (Platforms)",
+                    databases: "データベース (Databases)"
+                },
+                personal: {
+                    dob: "<strong>Date of Birth:</strong> 23rd August 1994",
+                    nationality: "<strong>Nationality:</strong> Indian",
+                    marital: "<strong>Marital Status:</strong> Married",
+                    languages: "<strong>Languages:</strong> English (Fluent), Marathi (Native), Hindi (Native)"
+                }
+            }
+        };
+
+        // Switch Resume Formats dynamically
+        function changeResumeRegion(regionCode) {
+            const canvas = document.getElementById('resume-canvas');
+            canvas.setAttribute('data-region', regionCode);
+
+            const rule = REGIONAL_RULES[regionCode];
+
+            // 1. Anti-bias handling (hide/show DOB, Nationality, Marital status)
+            const complianceDiv = document.getElementById('compliance-personal-details');
+            if (rule.antiBias) {
+                complianceDiv.classList.add('hidden');
+            } else {
+                complianceDiv.classList.remove('hidden');
+            }
+
+            // 2. Photo compliance rendering
+            const photoBlock = document.getElementById('portrait-photo-block');
+            if (rule.photo) {
+                photoBlock.classList.remove('hidden');
+            } else {
+                photoBlock.classList.add('hidden');
+            }
+
+            // 3. Germany signing line handling
+            const signingDiv = document.getElementById('germany-signing-component');
+            if (rule.signing) {
+                signingDiv.classList.remove('hidden');
+                document.getElementById('germany-signing-date').innerText = new Date().toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' });
+            } else {
+                signingDiv.classList.add('hidden');
+            }
+
+            // 4. UAE language info block
+            const langRow = document.getElementById('languages-u-list');
+            if (rule.languages) {
+                complianceDiv.classList.remove('hidden'); 
+                langRow.classList.remove('hidden');
+            } else {
+                langRow.classList.add('hidden');
+            }
+
+            // 5. Bullet Count Limit Filter
+            const jobCards = document.querySelectorAll('.job-card');
+            jobCards.forEach(card => {
+                const bullets = card.querySelectorAll('.job-bullet');
+                bullets.forEach((bullet, index) => {
+                    if (index >= rule.bulletCount) {
+                        bullet.classList.add('hidden');
+                    } else {
+                        bullet.classList.remove('hidden');
+                    }
+                });
+            });
+
+            // 6. Hobbies & References display rules
+            const hobbiesBlock = document.getElementById('hobbies-block');
+            const refsBlock = document.getElementById('references-block');
+            
+            if (rule.hobbies) {
+                hobbiesBlock.classList.remove('hidden');
+            } else {
+                hobbiesBlock.classList.add('hidden');
+            }
+
+            if (rule.references) {
+                refsBlock.classList.remove('hidden');
+            } else {
+                refsBlock.classList.add('hidden');
+            }
+
+            // 7. Spelling adjustments (en-GB / en-US)
+            let summaryNode = document.getElementById('summary-text');
+            let originalSummary = ORIGINAL_TEXTS.summary;
+
+            if (regionCode === 'uk' || regionCode === 'au') {
+                summaryNode.innerHTML = originalSummary
+                    .replace(/optimized/gi, "optimised")
+                    .replace(/Optimized/gi, "Optimised")
+                    .replace(/organization/gi, "organisation")
+                    .replace(/Organization/gi, "Organisation")
+                    .replace(/specialized/gi, "specialised")
+                    .replace(/Specialized/gi, "Specialised");
+            } else {
+                summaryNode.innerHTML = originalSummary;
+            }
+
+            // 8. Translation Engine Execution
+            if (rule.translation && TRANSLATIONS[regionCode]) {
+                const local = TRANSLATIONS[regionCode];
+
+                // Section Headers
+                document.getElementById('h-summary').innerHTML = local.headers.summary;
+                document.getElementById('h-skills').innerText = local.headers.skills;
+                document.getElementById('h-experience').innerText = local.headers.experience;
+                document.getElementById('h-projects').innerText = local.headers.projects;
+                document.getElementById('h-certs').innerText = local.headers.certs;
+                document.getElementById('h-education').innerText = local.headers.education;
+                document.getElementById('h-hobbies').innerText = local.headers.hobbies;
+                document.getElementById('h-refs').innerText = local.headers.references;
+
+                // Skills subcategories
+                document.getElementById('sub-domain').innerText = local.subcategories.domain;
+                document.getElementById('sub-standards').innerText = local.subcategories.standards;
+                document.getElementById('sub-methodology').innerText = local.subcategories.methodology;
+                document.getElementById('sub-tools').innerHTML = local.subcategories.tools;
+                document.getElementById('sub-platforms').innerText = local.subcategories.platforms;
+                document.getElementById('sub-databases').innerText = local.subcategories.databases;
+
+                // Compliance labels
+                document.getElementById('label-dob').innerHTML = local.personal.dob;
+                document.getElementById('label-nationality').innerHTML = local.personal.nationality;
+                document.getElementById('label-marital').innerHTML = local.personal.marital;
+                document.getElementById('languages-u-list').innerHTML = local.personal.languages;
+
+                // German signing labels
+                if (regionCode === 'de') {
+                    document.getElementById('label-ort').innerText = local.signing.ort + " (Place)";
+                    document.getElementById('label-unterschrift').innerText = local.signing.unterschrift + " (Signature)";
+                    document.getElementById('label-datum').innerText = local.signing.datum + " (Date)";
+                }
+
+                if (regionCode === 'jp') {
+                    document.getElementById('hire-stamp-jp').classList.remove('hidden');
+                } else {
+                    document.getElementById('hire-stamp-jp').classList.add('hidden');
+                }
+            } else {
+                // Restore defaults (English)
+                document.getElementById('hire-stamp-jp').classList.add('hidden');
+                document.getElementById('h-summary').innerHTML = ORIGINAL_TEXTS.headers.summary;
+                document.getElementById('h-skills').innerText = ORIGINAL_TEXTS.headers.skills;
+                document.getElementById('h-experience').innerText = ORIGINAL_TEXTS.headers.experience;
+                document.getElementById('h-projects').innerText = ORIGINAL_TEXTS.headers.projects;
+                document.getElementById('h-certs').innerText = ORIGINAL_TEXTS.headers.certs;
+                document.getElementById('h-education').innerText = ORIGINAL_TEXTS.headers.education;
+                document.getElementById('h-hobbies').innerText = ORIGINAL_TEXTS.headers.hobbies;
+                document.getElementById('h-refs').innerText = ORIGINAL_TEXTS.headers.references;
+
+                document.getElementById('sub-domain').innerText = ORIGINAL_TEXTS.subcategories.domain;
+                document.getElementById('sub-standards').innerText = ORIGINAL_TEXTS.subcategories.standards;
+                document.getElementById('sub-methodology').innerText = ORIGINAL_TEXTS.subcategories.methodology;
+                document.getElementById('sub-tools').innerHTML = ORIGINAL_TEXTS.subcategories.tools;
+                document.getElementById('sub-platforms').innerText = ORIGINAL_TEXTS.subcategories.platforms;
+                document.getElementById('sub-databases').innerText = ORIGINAL_TEXTS.subcategories.databases;
+
+                document.getElementById('label-dob').innerHTML = "<strong>Date of Birth:</strong> 23rd August 1994";
+                document.getElementById('label-nationality').innerHTML = "<strong>Nationality:</strong> Indian";
+                document.getElementById('label-marital').innerHTML = "<strong>Marital Status:</strong> Married";
+                document.getElementById('languages-u-list').innerHTML = "<strong>Languages:</strong> English (Fluent), Marathi (Native), Hindi (Native)";
+            }
+
+            showToast(`Format updated cleanly.`);
+        }
+
+        // Error handler for image file loading
+        function handleImageLoadFailure() {
+            const img = document.getElementById('profile-img');
+            const fallback = document.getElementById('profile-fallback');
+            if (img) {
+                img.style.display = 'none';
+            }
+            if (fallback) {
+                fallback.classList.remove('hidden');
+            }
+        }
+
+        // Global toast copy notifications
+        function showToast(text) {
+            const toast = document.getElementById('toast-message');
+            document.getElementById('toast-text').innerText = text;
+            
+            toast.classList.remove('opacity-0', 'translate-y-[-100px]');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-[-100px]');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 3000);
+        }
+        
+        // Initial configuration sweep
+        window.addEventListener('DOMContentLoaded', () => {
+            changeResumeRegion('in');
+        });
+    </script>
+</body>
+</html>
