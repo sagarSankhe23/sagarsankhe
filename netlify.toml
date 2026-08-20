@@ -2,11 +2,12 @@
   command = "bun run build && bun scripts/export-static.mjs"
   publish = "dist/client"
 
+[build.environment]
+  # Force the same build output layout Netlify's auto-detected preset would change.
+  # Without this, Nitro switches to its Netlify preset and writes the server
+  # bundle to .netlify/, so dist/client/assets is never produced.
+  NITRO_PRESET = "cloudflare_module"
+
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
