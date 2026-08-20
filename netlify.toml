@@ -1,3 +1,11 @@
+[build]
+  command = "bun run build && bun scripts/export-static.mjs"
+  publish = "dist/client"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

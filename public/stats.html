@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio Analytics</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:#0f1115;color:#e6e6e6;padding:32px;max-width:900px;margin:0 auto;}
+  h1{font-size:20px;margin-bottom:4px;}
+  h2{font-size:15px;margin-top:36px;margin-bottom:12px;color:#c4c8d0;}
+  p.sub{color:#888;font-size:13px;margin-top:0;margin-bottom:28px;}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;}
+  .card{background:#1a1d24;border:1px solid #2a2d35;border-radius:10px;padding:16px 18px;}
+  .card .label{font-size:12.5px;color:#9aa0aa;margin-bottom:6px;}
+  .card .value{font-size:26px;font-weight:700;color:#4ade80;}
+  .breakdown{margin-top:8px;padding-top:8px;border-top:1px solid #2a2d35;font-size:12px;color:#c4c8d0;}
+  .breakdown div{display:flex;justify-content:space-between;padding:2px 0;}
+  input{background:#1a1d24;border:1px solid #2a2d35;color:#e6e6e6;padding:8px 10px;border-radius:6px;font-size:14px;width:220px;margin-right:8px;}
+  button{background:#4ade80;color:#0f1115;border:none;padding:8px 14px;border-radius:6px;font-weight:600;cursor:pointer;font-size:14px;}
+  #err{color:#f87171;font-size:13px;margin-top:10px;}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px;}
+  th,td{text-align:left;padding:7px 8px;border-bottom:1px solid #23262e;white-space:nowrap;}
+  th{color:#9aa0aa;font-weight:600;}
+  td{color:#dcdfe4;}
+  .pill{display:inline-block;background:#23262e;color:#c4c8d0;border-radius:5px;padding:1px 7px;font-size:11px;}
+  .tablewrap{overflow-x:auto;}
+</style>
+</head>
+<body>
+  <h1>Portfolio Analytics</h1>
+  <p class="sub">Backup event tracker (independent of Umami) — clicks + precise city/region/browser/OS.</p>
+
+  <div>
+    <input id="keyInput" type="password" placeholder="Enter your STATS_SECRET">
+    <button onclick="load()">View</button>
+  </div>
+  <div id="err"></div>
+  <div id="results" style="margin-top:24px;"></div>
+
+<script>
+function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+const EVENT_LABELS = {
+  'view-resume': 'View Resume clicks',
+  'contact-me': 'Contact Me clicks',
+  'contact-channel': 'Contact channel clicks',
+  'send-message': 'Send message clicks',
+  'skill-tab': 'Skill tab clicks',
+  'project-detail': 'Project detail views',
+  'project-link': 'Project external link clicks',
+  'verify-credentials-linkedin': 'LinkedIn verify clicks',
+  'nav-link': 'Nav link clicks',
+  'theme-toggle': 'Theme toggle clicks',
+};
+
+async function load(){
+  const key = document.getElementById('keyInput').value.trim();
+  const err = document.getElementById('err');
+  const results = document.getElementById('results');
+  err.textContent = '';
+  results.innerHTML = 'Loading…';
+
+  try{
+    const resp = await fetch('/.netlify/functions/get-stats?key=' + encodeURIComponent(key));
+    if (!resp.ok) {
+      err.textContent = resp.status === 401 ? 'Wrong key.' : 'Error loading stats.';
+      results.innerHTML = '';
+      return;
+    }
+    const data = await resp.json();
+    render(data.stats || {}, data.recentEvents || []);
+  } catch(e){
+    err.textContent = 'Could not reach the stats function.';
+    results.innerHTML = '';
+  }
+}
+
+function render(stats, events){
+  const results = document.getElementById('results');
+
+  // Top-level event keys are plain names like "contact-channel";
+  // detail breakdowns are keys like "contact-channel:channel:linkedin"
+  const topLevelKeys = Object.keys(stats).filter(k => !k.includes(':'));
+
+  let html = `<div class="cards">`;
+  for (const key of topLevelKeys) {
+    const label = EVENT_LABELS[key] || key;
+    const count = stats[key];
+    const breakdownKeys = Object.keys(stats).filter(k => k.startsWith(key + ':'));
+    const breakdownHtml = breakdownKeys.length ? `<div class="breakdown">${
+      breakdownKeys.map(k => {
+        const parts = k.split(':'); // event:field:value
+        const value = parts.slice(2).join(':');
+        return `<div><span>${esc(value)}</span><span>${esc(stats[k])}</span></div>`;
+      }).join('')
+    }</div>` : '';
+    html += `<div class="card"><div class="label">${esc(label)}</div><div class="value">${esc(count)}</div>${breakdownHtml}</div>`;
+  }
+  html += `</div>`;
+
+  html += `<h2>Recent activity (last ${events.length})</h2>`;
+  if (!events.length) {
+    html += `<p style="color:#888;font-size:13px;">No events recorded yet.</p>`;
+  } else {
+    html += `<div class="tablewrap"><table>
+      <tr><th>Time</th><th>Event</th><th>Detail</th><th>City</th><th>Region</th><th>Country</th><th>Browser</th><th>OS</th><th>Device</th></tr>
+      ${events.map(e => `<tr>
+        <td>${new Date(e.time).toLocaleString()}</td>
+        <td><span class="pill">${esc(EVENT_LABELS[e.event] || e.event)}</span></td>
+        <td>${e.detail ? esc(Object.values(e.detail).join(', ')) : '—'}</td>
+        <td>${esc(e.city) || '—'}</td>
+        <td>${esc(e.region) || '—'}</td>
+        <td>${esc(e.country) || '—'}</td>
+        <td>${esc(e.browser) || '—'}</td>
+        <td>${esc(e.os) || '—'}</td>
+        <td>${esc(e.deviceType) || '—'}</td>
+      </tr>`).join('')}
+    </table></div>`;
+  }
+
+  results.innerHTML = html;
+}
+</script>
+</body>
+</html>
