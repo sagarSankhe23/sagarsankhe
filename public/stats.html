@@ -24,6 +24,8 @@
   td{color:#dcdfe4;}
   .pill{display:inline-block;background:#23262e;color:#c4c8d0;border-radius:5px;padding:1px 7px;font-size:11px;}
   .tablewrap{overflow-x:auto;}
+  #rememberWrap{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#9aa0aa;cursor:pointer;margin-left:4px;}
+  #rememberWrap input{width:auto;margin:0;}
 </style>
 </head>
 <body>
@@ -33,6 +35,7 @@
   <div>
     <input id="keyInput" type="password" placeholder="Enter your STATS_SECRET">
     <button onclick="load()">View</button>
+    <label id="rememberWrap"><input id="rememberBox" type="checkbox"> Remember me on this device</label>
   </div>
   <div id="err"></div>
   <div id="results" style="margin-top:24px;"></div>
@@ -62,10 +65,15 @@ async function load(){
   try{
     const resp = await fetch('/.netlify/functions/get-stats?key=' + encodeURIComponent(key));
     if (!resp.ok) {
+      if (resp.status === 401) { try { localStorage.removeItem(STORE_KEY); } catch(e){} }
       err.textContent = resp.status === 401 ? 'Wrong key.' : 'Error loading stats.';
       results.innerHTML = '';
       return;
     }
+    try {
+      if (document.getElementById('rememberBox').checked) localStorage.setItem(STORE_KEY, key);
+      else localStorage.removeItem(STORE_KEY);
+    } catch(e){}
     const data = await resp.json();
     render(data.stats || {}, data.recentEvents || []);
   } catch(e){
@@ -73,6 +81,21 @@ async function load(){
     results.innerHTML = '';
   }
 }
+
+const STORE_KEY = 'portfolio-stats-secret';
+
+document.getElementById('keyInput').addEventListener('keydown', e => { if (e.key === 'Enter') load(); });
+
+(function restore(){
+  try {
+    const saved = localStorage.getItem(STORE_KEY);
+    if (saved) {
+      document.getElementById('keyInput').value = saved;
+      document.getElementById('rememberBox').checked = true;
+      load();
+    }
+  } catch(e){}
+})();
 
 function render(stats, events){
   const results = document.getElementById('results');

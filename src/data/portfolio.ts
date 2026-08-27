@@ -28,7 +28,7 @@ export const person = {
   linkedin: "https://linkedin.com/in/sagarsankhe23",
   github: "https://qaforge.netlify.app",
   
-  resumeSite: "https://sagarsankheportfolio.netlify.app",
+  resumeSite: "https://sagarsankheresume.netlify.app",
   summary:
     "8+ years of QA expertise in BFSI and capital markets fintech, delivering zero-defect production releases across trading and non-trading platforms (Mobile, Web, EXE). Deep domain knowledge in Equity, F&O, Currency and Commodities — including OMS, RMS, BOD files and multi-exchange risk validation. ISTQB CTFL v4.0 certified and creator of QA Forge.",
 };

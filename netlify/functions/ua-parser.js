@@ -30,15 +30,27 @@ export function parseUserAgent(ua) {
     os = 'macOS'; osVersion = match(ua, /Mac OS X ([\d_]+)/).replace(/_/g, '.');
   } else if (/iPhone|iPad|iPod/.test(ua)) {
     os = 'iOS'; osVersion = match(ua, /OS ([\d_]+) like Mac/).replace(/_/g, '.');
-  } else if (/Android ([\d.]+)/.test(ua)) {
-    os = 'Android'; osVersion = match(ua, /Android ([\d.]+)/);
-  } else if (/Linux/.test(ua)) { os = 'Linux'; }
+  } else if (/Android/.test(ua)) {
+    // Android must be checked before Linux: Android UAs also contain "Linux".
+    os = 'Android'; osVersion = match(ua, /Android[ /]?([\d.]+)/);
+  } else if (/CrOS/.test(ua)) { os = 'ChromeOS'; }
+  else if (/Linux/.test(ua)) { os = 'Linux'; }
 
   let deviceType = 'Desktop';
-  if (/iPad|Tablet/.test(ua)) deviceType = 'Tablet';
-  else if (/Mobile|iPhone|Android/.test(ua)) deviceType = 'Mobile';
+  if (/iPad/.test(ua) || /Tablet|Tab\b/i.test(ua)) deviceType = 'Tablet';
+  // Android tablets omit the "Mobile" token; Android phones always include it.
+  else if (/Android/.test(ua) && !/Mobile/.test(ua)) deviceType = 'Tablet';
+  else if (/Mobile|iPhone|iPod|Android/.test(ua)) deviceType = 'Mobile';
+  // iPadOS 13+ Safari reports as Macintosh; touch-capable Mac = iPad.
+  else if (/Macintosh/.test(ua) && /Mobile\/|Touch/.test(ua)) deviceType = 'Tablet';
 
-  return { browser, browserVersion, os, osVersion, deviceType };
+  // Best-effort device model (e.g. Lenovo TB-X606F) from Android UAs.
+  let deviceModel = '';
+  const am = ua.match(/Android[^;)]*;\s*([^;)]+?)(?:\s+Build\/|[;)])/);
+  if (am && am[1] && !/^wv$/i.test(am[1].trim())) deviceModel = am[1].trim();
+
+  return { browser, browserVersion, os, osVersion, deviceType, deviceModel };
+
 }
 
 function match(str, regex) {

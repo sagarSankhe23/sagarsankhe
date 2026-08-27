@@ -66,7 +66,7 @@ export default async (req, context) => {
     country: geo.country?.name || null,
     browser: device.browser + (device.browserVersion ? ' ' + device.browserVersion : ''),
     os: device.os + (device.osVersion ? ' ' + device.osVersion : ''),
-    deviceType: device.deviceType,
+    deviceType: device.deviceType + (device.deviceModel ? ' (' + device.deviceModel + ')' : ''),
   };
 
   await appendToLog(store, logEntry);
