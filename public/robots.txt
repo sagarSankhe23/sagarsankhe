@@ -14,4 +14,4 @@ User-agent: *
 Allow: /
 Disallow: /stats.html
 
-Sitemap: https://sagarsankhe.netlify.app/sitemap.xml
+Sitemap: https://sagarsankhe.in/sitemap.xml
