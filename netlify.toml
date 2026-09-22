@@ -5,3 +5,11 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+
+# Redirect the Netlify subdomain to the official domain so Google
+# sees only one site and stops listing both in search results.
+[[redirects]]
+  from = "https://sagarsankhe.netlify.app/*"
+  to = "https://sagarsankhe.in/:splat"
+  status = 301
+  force = true
