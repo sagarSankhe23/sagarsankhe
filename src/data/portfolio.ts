@@ -19,18 +19,19 @@ import {
 
 export const person = {
   name: "Sagar Sankhe",
-  role: "Business Analyst & QA Tester",
+  role: "Business Analyst & QA Manager",
   specialism: "Capital Markets & BFSI Fintech · 8+ Years",
-  company: "Spark Capital",
-  title: "Business Analyst & QA Tester",
-  location: "Mumbai, India",
+  company: "Spark Capital Private Wealth Management",
+  title: "Business Analyst & QA Manager",
+  location: "Santacruz, Mumbai",
+  city: "Mumbai, India",
   email: "sagarsankhe23@gmail.com",
   linkedin: "https://linkedin.com/in/sagarsankhe23",
   github: "https://qaforge.netlify.app",
   
   resumeSite: "https://sagarsankheresume.netlify.app",
   summary:
-    "8+ years of QA expertise in BFSI and capital markets fintech, delivering zero-defect production releases across trading and non-trading platforms (Mobile, Web, EXE). Deep domain knowledge in Equity, F&O, Currency and Commodities — including OMS, RMS, BOD files and multi-exchange risk validation. Currently Business Analyst & QA Tester at Spark Capital, working across Middle Office (IRIS) and Back Office (iBeats). ISTQB CTFL v4.0 certified and creator of QA Forge.",
+    "8+ years of QA expertise in BFSI and capital markets fintech, delivering zero-defect production releases across trading and non-trading platforms (Mobile, Web, EXE). Deep domain knowledge in Equity, F&O, Currency and Commodities — including OMS, RMS, BOD files and multi-exchange risk validation. Currently Business Analyst & QA Manager at Spark Capital Private Wealth Management, working across Middle Office (IRIS) and Back Office (iBeats). ISTQB CTFL v4.0 certified and creator of QA Forge.",
 };
 
 export const typingLines = [
@@ -51,11 +52,11 @@ export const stats = [
 
 export const experience = [
   {
-    company: "Spark Capital",
+    company: "Spark Capital Private Wealth Management",
     logo: "SC",
-    role: "Business Analyst & QA Tester",
+    role: "Business Analyst & QA Manager",
     period: "Sept 2026 — Present",
-    location: "Mumbai, India",
+    location: "Santacruz, Mumbai",
     current: true,
     responsibilities: [
       "Review and validate Business Requirement Documents (BRDs) against Figma designs, ensuring alignment between business requirements and UI/UX specifications.",
@@ -261,7 +262,7 @@ export const certifications = [
   {
     name: "ISTQB CT-AI — AI Testing (Generative AI)",
     issuer: "ISTQB",
-    date: "Expected Sept 2026",
+    date: "Expected Dec 2026",
     status: "In progress",
     icon: Sparkles,
   },
@@ -341,9 +342,9 @@ export const testimonials = [
 
 export const resumeEntries = [
   {
-    section: "Experience — Spark Capital (Sept 2026 — Present)",
+    section: "Experience — Spark Capital Private Wealth Management (Sept 2026 — Present)",
     items: [
-      "Business Analyst & QA Tester — Mumbai, India.",
+      "Business Analyst & QA Manager — Santacruz, Mumbai.",
       "Review and validate BRDs against Figma designs, ensuring alignment between business requirements and UI/UX specifications.",
       "Analyze and test user stories and work items tracked on the Azure platform.",
       "API testing and validation using Postman; SQL queries for database record validation and data integrity.",
@@ -399,7 +400,7 @@ export const resumeEntries = [
     section: "Certifications & Awards",
     items: [
       "ISTQB Certified Tester Foundation Level (CTFL) v4.0 — Oct 2024.",
-      "ISTQB CT-AI — AI Testing (Generative AI) — expected Sept 2026.",
+      "ISTQB CT-AI — AI Testing (Generative AI) — expected Dec 2026.",
       "Generative AI Tools, Skill Nation — Jun 2026; AI Tools Workshop, Be10x — Mar 2026.",
       "QA of the Month (Angel One, Jul 2024); League of Extraordinary Angelites (Jun 2023); Outstanding Employee (Aug & Sep 2021).",
     ],
