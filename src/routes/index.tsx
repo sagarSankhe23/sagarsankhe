@@ -39,8 +39,8 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "Person",
           name: "Sagar Sankhe",
-          jobTitle: "Senior Quality Assurance Engineer",
-          worksFor: { "@type": "Organization", name: "JM Financial Services Limited" },
+          jobTitle: "Business Analyst & QA Tester",
+          worksFor: { "@type": "Organization", name: "Spark Capital" },
           email: "mailto:sagarsankhe23@gmail.com",
           sameAs: ["https://linkedin.com/in/sagarsankhe23"],
           address: {

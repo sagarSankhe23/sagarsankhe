@@ -19,10 +19,10 @@ import {
 
 export const person = {
   name: "Sagar Sankhe",
-  role: "Deputy Manager — Quality Assurance",
+  role: "Business Analyst & QA Tester",
   specialism: "Capital Markets & BFSI Fintech · 8+ Years",
-  company: "JM Financial Services Limited",
-  title: "Deputy Manager, Quality Assurance",
+  company: "Spark Capital",
+  title: "Business Analyst & QA Tester",
   location: "Mumbai, India",
   email: "sagarsankhe23@gmail.com",
   linkedin: "https://linkedin.com/in/sagarsankhe23",
@@ -30,7 +30,7 @@ export const person = {
   
   resumeSite: "https://sagarsankheresume.netlify.app",
   summary:
-    "8+ years of QA expertise in BFSI and capital markets fintech, delivering zero-defect production releases across trading and non-trading platforms (Mobile, Web, EXE). Deep domain knowledge in Equity, F&O, Currency and Commodities — including OMS, RMS, BOD files and multi-exchange risk validation. ISTQB CTFL v4.0 certified and creator of QA Forge.",
+    "8+ years of QA expertise in BFSI and capital markets fintech, delivering zero-defect production releases across trading and non-trading platforms (Mobile, Web, EXE). Deep domain knowledge in Equity, F&O, Currency and Commodities — including OMS, RMS, BOD files and multi-exchange risk validation. Currently Business Analyst & QA Tester at Spark Capital, working across Middle Office (IRIS) and Back Office (iBeats). ISTQB CTFL v4.0 certified and creator of QA Forge.",
 };
 
 export const typingLines = [
@@ -50,6 +50,28 @@ export const stats = [
 ];
 
 export const experience = [
+  {
+    company: "Spark Capital",
+    logo: "SC",
+    role: "Business Analyst & QA Tester",
+    period: "Sept 2026 — Present",
+    location: "Mumbai, India",
+    current: true,
+    responsibilities: [
+      "Review and validate Business Requirement Documents (BRDs) against Figma designs, ensuring alignment between business requirements and UI/UX specifications.",
+      "Analyze and test user stories and work items tracked on the Azure platform, ensuring functional accuracy and requirement compliance.",
+      "Perform API testing and validation using Postman to verify API responses, data accuracy and expected behaviour.",
+      "Execute SQL queries to validate database records, verify data integrity and investigate discrepancies.",
+      "Perform functional testing and data validation across Middle Office (IRIS) and Back Office (iBeats) platforms.",
+      "Validate the client onboarding and KYC journey through the Meon SRM platform, ensuring accuracy of client registration and verification workflows.",
+    ],
+    achievements: [
+      "Bridging business requirements and QA across Middle Office (IRIS) and Back Office (iBeats) platforms.",
+      "End-to-end validation of the client onboarding and KYC journey via Meon SRM.",
+      "Combined BRD–Figma–API–SQL validation loop for audit-ready requirement compliance.",
+    ],
+    tech: ["Azure DevOps", "Postman", "SQL", "Figma", "IRIS (Middle Office)", "iBeats (Back Office)", "Meon SRM"],
+  },
   {
     company: "JM Financial Services Limited",
     logo: "JM",
@@ -318,6 +340,17 @@ export const testimonials = [
 ];
 
 export const resumeEntries = [
+  {
+    section: "Experience — Spark Capital (Sept 2026 — Present)",
+    items: [
+      "Business Analyst & QA Tester — Mumbai, India.",
+      "Review and validate BRDs against Figma designs, ensuring alignment between business requirements and UI/UX specifications.",
+      "Analyze and test user stories and work items tracked on the Azure platform.",
+      "API testing and validation using Postman; SQL queries for database record validation and data integrity.",
+      "Functional testing and data validation across Middle Office (IRIS) and Back Office (iBeats) platforms.",
+      "Validate the client onboarding and KYC journey through the Meon SRM platform.",
+    ],
+  },
   {
     section: "Profile",
     items: [

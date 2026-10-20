@@ -13,7 +13,7 @@ export function Timeline() {
           index="02"
           kicker="Professional timeline"
           title="Where the releases shipped"
-          description="Three broking and fintech firms, one throughline: audit-ready QA for systems that move real money."
+          description="Four broking and fintech firms, one throughline: audit-ready QA for systems that move real money."
         />
 
         <div className="relative">
