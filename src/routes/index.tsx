@@ -13,9 +13,9 @@ import { Contact } from "@/components/site/contact";
 import { Footer } from "@/components/site/footer";
 import { MouseGlow } from "@/components/site/effects";
 
-const TITLE = "Sagar Sankhe — Senior QA Engineer, Capital Markets";
+const TITLE = "Sagar Sankhe — Business Analyst & QA Manager, Capital Markets";
 const DESCRIPTION =
-  "Senior Quality Assurance Engineer with 8+ years in capital markets and BFSI fintech. OMS, RMS and multi-exchange trading platform QA. 25+ releases, zero critical defects.";
+  "Business Analyst & QA Manager with 8+ years in capital markets and BFSI fintech. QA for OMS, RMS and multi-exchange trading platforms. Mumbai, India.";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -39,8 +39,8 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "Person",
           name: "Sagar Sankhe",
-          jobTitle: "Business Analyst & QA Tester",
-          worksFor: { "@type": "Organization", name: "Spark Capital" },
+          jobTitle: "Business Analyst & QA Manager",
+          worksFor: { "@type": "Organization", name: "Spark Capital Private Wealth Management" },
           email: "mailto:sagarsankhe23@gmail.com",
           sameAs: ["https://linkedin.com/in/sagarsankhe23"],
           address: {
