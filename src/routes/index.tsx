@@ -13,7 +13,7 @@ import { Contact } from "@/components/site/contact";
 import { Footer } from "@/components/site/footer";
 import { MouseGlow } from "@/components/site/effects";
 
-const TITLE = "Sagar Sankhe — Business Analyst & QA Manager, Capital Markets";
+const TITLE = "Sagar Sankhe — Business Analyst & QA Manager";
 const DESCRIPTION =
   "Business Analyst & QA Manager with 8+ years in capital markets and BFSI fintech. QA for OMS, RMS and multi-exchange trading platforms. Mumbai, India.";
 
