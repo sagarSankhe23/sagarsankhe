@@ -15,7 +15,7 @@ const channels = [
   { label: "Email", value: person.email, href: `mailto:${person.email}`, icon: Mail },
   { label: "LinkedIn", value: "linkedin.com/in/sagarsankhe23", href: person.linkedin, icon: Linkedin },
   { label: "QA Forge", value: "qaforge.netlify.app", href: person.github, icon: Wrench },
-  { label: "Location", value: person.location, href: null, icon: MapPin },
+  { label: "Location", value: person.city, href: null, icon: MapPin },
 ];
 
 export function Contact() {
